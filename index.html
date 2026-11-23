@@ -6,139 +6,161 @@
   <title>Story of Toqu — komadua.toqu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #09090B;
-      --surface: #0F0F12;
-      --surface-hover: #141418;
-      --text-main: #E4E4E7;
-      --text-muted: #71717A;
-      --cobalt: #5B8FB9;      /* Biru baja dingin & sunyi */
-      --oxblood: #9F1239;     /* Merah anggur gelap & getir */
-      --border: #1E1E24;
+      --bg: #08080A;
+      --surface: #0E0E12;
+      --surface-elevated: #141419;
+      --text-primary: #F4F4F6;
+      --text-secondary: #D4D4D8;
+      --text-muted: #82828E;
+      
+      /* Palet Utama: Merah Getir yang Terbaca Tajam + Aksen Biru Baja Sangat Tipis */
+      --crimson: #E11D48;         /* Kontras tinggi untuk sub-bab & penanda penting */
+      --crimson-soft: rgba(225, 29, 72, 0.14);
+      --steel-blue: #60A5FA;      /* Biru dingin hanya sebagai aksen mikro */
+      --steel-muted: #475569;
+      --border: #1C1C22;
+      --border-hover: #2E2E38;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background-color: var(--bg);
-      color: var(--text-main);
+      color: var(--text-primary);
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      line-height: 1.8;
+      line-height: 1.85;
       -webkit-font-smoothing: antialiased;
       padding: 0 24px;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Pencahayaan Dramatis Sangat Halus di Latar */
+    /* Atmosfer Pencahayaan Gelap Dramatis */
     body::before {
       content: "";
       position: fixed;
-      top: -20%; right: -10%;
-      width: 55vw; height: 55vw;
-      background: radial-gradient(circle, rgba(91, 143, 185, 0.05) 0%, transparent 65%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    body::after {
-      content: "";
-      position: fixed;
-      bottom: -20%; left: -10%;
-      width: 50vw; height: 50vw;
-      background: radial-gradient(circle, rgba(159, 18, 57, 0.04) 0%, transparent 65%);
+      top: -15%; left: 50%;
+      transform: translateX(-50%);
+      width: 70vw; height: 45vh;
+      background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.045) 0%, rgba(96, 165, 250, 0.02) 45%, transparent 75%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Progress Bar Sehelai Rambut */
+    /* Progress Bar Sehelai Rambut (Biru Baja ke Merah Crimson) */
     #progress-container {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 2px;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.03);
       z-index: 100;
       display: none;
     }
     #progress-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--cobalt), var(--oxblood));
+      background: linear-gradient(90deg, var(--steel-muted) 0%, var(--steel-blue) 45%, var(--crimson) 100%);
       transition: width 0.1s ease-out;
     }
 
     .container {
-      max-width: 640px;
+      max-width: 650px;
       margin: 0 auto;
-      padding: 64px 0 96px;
+      padding: 68px 0 100px;
       position: relative;
       z-index: 1;
     }
 
     /* Header Editorial */
     header {
-      margin-bottom: 48px;
+      margin-bottom: 44px;
       border-bottom: 1px solid var(--border);
       padding-bottom: 32px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      gap: 20px;
-      position: relative;
+      align-items: center;
+      gap: 24px;
     }
     .kicker {
       font-size: 0.72rem;
-      letter-spacing: 0.22em;
+      font-weight: 500;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--cobalt);
-      margin-bottom: 8px;
+      color: var(--crimson);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kicker::before {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 1px;
+      background-color: var(--crimson);
     }
     .brand-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
+      font-size: 2.75rem;
       font-weight: 600;
-      letter-spacing: -0.01em;
-      line-height: 1.1;
-      color: #F4F4F5;
+      letter-spacing: -0.015em;
+      line-height: 1.05;
+      color: var(--text-primary);
     }
-    .brand-title span {
-      color: var(--oxblood);
+    .brand-title .comma-mark {
+      color: var(--crimson);
       font-style: italic;
       margin-left: 2px;
     }
     .brand-author {
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
-      margin-top: 8px;
-      letter-spacing: 0.08em;
+      margin-top: 10px;
+      letter-spacing: 0.06em;
+    }
+    .brand-author strong {
+      color: var(--text-secondary);
+      font-weight: 400;
     }
 
-    /* Emblem Ukiran Kupu-Kupu Geometris (Statis & Tajam) */
-    .emblem-mark {
-      width: 54px;
-      height: 54px;
+    /* Emblem Baru: Siluet Kupu-Kupu Asimetris & Tanda Koma */
+    .emblem-wrapper {
+      width: 64px;
+      height: 64px;
       flex-shrink: 0;
-      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #121218, #08080A);
+      box-shadow: inset 0 0 18px rgba(96, 165, 250, 0.04);
+    }
+    .emblem-svg {
+      width: 38px;
+      height: 38px;
     }
 
-    /* Prolog Sastra */
+    /* Prolog Manifesto */
     .prolog {
-      border-left: 1px solid var(--oxblood);
-      padding: 4px 0 4px 22px;
-      margin-bottom: 48px;
+      border-left: 2px solid var(--crimson);
+      padding: 6px 0 6px 22px;
+      margin-bottom: 52px;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      color: #D4D4D8;
-      font-size: 1.22rem;
+      color: var(--text-secondary);
+      font-size: 1.26rem;
       line-height: 1.65;
     }
 
-    /* Navigasi Arc */
+    /* Navigasi Tab Arc */
     .arc-tabs {
       display: flex;
-      gap: 24px;
+      gap: 28px;
       border-bottom: 1px solid var(--border);
       margin-bottom: 32px;
       overflow-x: auto;
@@ -148,105 +170,124 @@
     .tab-btn {
       background: none;
       border: none;
-      border-bottom: 1px solid transparent;
+      border-bottom: 2px solid transparent;
       color: var(--text-muted);
-      padding: 0 0 12px 0;
+      padding: 0 0 14px 0;
       font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       white-space: nowrap;
       cursor: pointer;
       transition: color 0.2s, border-color 0.2s;
     }
     .tab-btn.active {
-      color: var(--text-main);
-      border-bottom-color: var(--cobalt);
+      color: var(--text-primary);
+      border-bottom-color: var(--crimson);
     }
     .tab-btn.locked {
       opacity: 0.35;
       cursor: not-allowed;
     }
 
+    /* Judul Sub-Bab Arc */
     .arc-header {
       margin-bottom: 28px;
     }
     .arc-header h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: #F4F4F5;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
     }
     .arc-header p {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       margin-top: 4px;
     }
 
-    /* Daftar Cerita Bergaya Indeks Buku */
+    /* Daftar Cerita (Indeks Editorial) */
     .story-list {
       display: flex;
       flex-direction: column;
       border-top: 1px solid var(--border);
     }
     .story-card {
-      padding: 22px 4px;
+      padding: 24px 8px;
       border-bottom: 1px solid var(--border);
       cursor: pointer;
-      transition: background 0.25s, padding-left 0.25s;
-      position: relative;
+      transition: background 0.25s ease, padding-left 0.25s ease, border-color 0.25s ease;
     }
     .story-card:hover:not(.locked-card) {
-      background: linear-gradient(90deg, rgba(91, 143, 185, 0.04) 0%, transparent 100%);
-      padding-left: 12px;
+      background: linear-gradient(90deg, rgba(225, 29, 72, 0.04) 0%, transparent 100%);
+      padding-left: 16px;
+      border-bottom-color: var(--border-hover);
     }
     .story-card:hover:not(.locked-card) .story-title {
-      color: var(--cobalt);
+      color: #FFFFFF;
     }
     .story-card.locked-card {
       opacity: 0.42;
       cursor: default;
     }
+
+    /* Label Sub-Bab & Durasi Baca (Dibuat Kontras & Tajam) */
     .story-meta {
       display: flex;
       justify-content: space-between;
-      font-size: 0.72rem;
+      align-items: center;
+      font-size: 0.74rem;
+      font-weight: 500;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--oxblood);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
-    .story-card.locked-card .story-meta {
+    .story-bab {
+      color: var(--crimson); /* Merah tegas agar sub-bab terbaca sangat jelas */
+    }
+    .story-time {
+      color: var(--steel-blue); /* Sentuhan biru dingin sangat halus pada metadata waktu */
+      opacity: 0.85;
+      font-weight: 400;
+    }
+    .story-card.locked-card .story-bab,
+    .story-card.locked-card .story-time {
       color: var(--text-muted);
+      opacity: 1;
     }
+
     .story-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
+      font-size: 1.48rem;
       font-weight: 600;
-      color: #F4F4F5;
+      color: var(--text-primary);
       margin-bottom: 6px;
+      line-height: 1.25;
       transition: color 0.2s;
     }
     .story-premise {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    /* Mode Baca */
+    /* Mode Baca (Reader View) */
     #reader-view {
       display: none;
       animation: fadeIn 0.35s ease;
     }
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .back-btn {
       background: none;
       border: none;
       color: var(--text-muted);
       font-size: 0.78rem;
+      font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
@@ -257,55 +298,57 @@
       padding: 4px 0;
       transition: color 0.2s;
     }
-    .back-btn:hover { color: var(--cobalt); }
+    .back-btn:hover { color: var(--crimson); }
 
     .reader-chapter {
-      font-size: 0.75rem;
-      color: var(--oxblood);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--crimson);
       letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
     .reader-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.35rem;
+      font-size: 2.5rem;
       font-weight: 600;
-      line-height: 1.2;
-      color: #F4F4F5;
+      line-height: 1.18;
+      color: var(--text-primary);
       margin-bottom: 36px;
       padding-bottom: 24px;
       border-bottom: 1px solid var(--border);
     }
     .reader-body p {
-      margin-bottom: 22px;
-      font-size: 1.02rem;
-      color: #D4D4D8;
-      text-align: left;
+      margin-bottom: 24px;
+      font-size: 1.04rem;
+      color: var(--text-secondary);
     }
+    /* Drop Cap Klasik dengan Sentuhan Merah Getir */
     .reader-body p:first-of-type::first-letter {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3.1rem;
+      font-size: 3.3rem;
+      font-weight: 600;
       float: left;
-      line-height: 0.85;
-      padding-right: 10px;
+      line-height: 0.82;
+      padding-right: 12px;
       padding-top: 4px;
-      color: var(--cobalt);
+      color: var(--crimson);
     }
 
-    /* Kotak Kutipan & Tautan WhatsApp */
+    /* Kotak Kutipan & Jembatan WhatsApp */
     .quote-box {
-      margin: 48px 0 32px;
-      padding: 24px;
+      margin: 52px 0 32px;
+      padding: 26px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-left: 2px solid var(--oxblood);
+      border-left: 2px solid var(--crimson);
     }
     .quote-text {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1.15rem;
-      color: #E4E4E7;
-      margin-bottom: 18px;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 20px;
       line-height: 1.6;
     }
     .action-row {
@@ -314,9 +357,10 @@
       gap: 12px;
     }
     .btn {
-      padding: 10px 18px;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
+      padding: 11px 18px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
       text-decoration: none;
@@ -324,29 +368,29 @@
       align-items: center;
       gap: 8px;
       border: 1px solid var(--border);
-      transition: all 0.25s;
+      transition: all 0.25s ease;
     }
     .btn-copy {
       background: transparent;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
     .btn-copy:hover {
-      border-color: var(--text-main);
-      color: var(--text-main);
+      border-color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.03);
     }
     .btn-wa {
-      background: rgba(91, 143, 185, 0.08);
-      border-color: var(--cobalt);
-      color: var(--cobalt);
+      background: var(--crimson-soft);
+      border-color: var(--crimson);
+      color: #FDA4AF;
     }
     .btn-wa:hover {
-      background: var(--cobalt);
-      color: #09090B;
+      background: var(--crimson);
+      color: #FFFFFF;
     }
 
     /* Footer */
     footer {
-      margin-top: 80px;
+      margin-top: 84px;
       padding-top: 32px;
       border-top: 1px solid var(--border);
       display: flex;
@@ -354,23 +398,30 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
     .social-links {
       display: flex;
-      gap: 20px;
+      gap: 22px;
     }
     .social-links a {
-      color: var(--text-muted);
+      color: var(--text-secondary);
       text-decoration: none;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       transition: color 0.2s;
     }
     .social-links a:hover {
-      color: var(--cobalt);
+      color: var(--crimson);
+    }
+
+    @media (max-width: 480px) {
+      .brand-title { font-size: 2.25rem; }
+      .emblem-wrapper { width: 52px; height: 52px; }
+      .emblem-svg { width: 30px; height: 30px; }
+      .reader-title { font-size: 2rem; }
     }
   </style>
 </head>
@@ -383,23 +434,25 @@
       <header>
         <div>
           <div class="kicker">Antologi Jeda &amp; Kehampaan</div>
-          <div class="brand-title">Story of Toqu<span>,</span></div>
-          <div class="brand-author">ditulis oleh komadua.toqu</div>
+          <h1 class="brand-title">Story of Toqu<span class="comma-mark">,</span></h1>
+          <div class="brand-author">ditulis oleh <strong>komadua.toqu</strong></div>
         </div>
-        <!-- Ukiran Kupu-Kupu Geometris Berujung Koma (Statis, Dewasa, Tajam) -->
-        <svg class="emblem-mark" viewBox="0 0 80 80" fill="none" aria-label="Emblem Story of Toqu">
-          <!-- Sayap Kiri Atas & Bawah -->
-          <path d="M38 38 C26 16, 8 14, 12 34 C14 44, 28 45, 36 40" stroke="#5B8FB9" stroke-width="1.2"/>
-          <path d="M36 41 C24 48, 16 62, 26 66 C32 68, 36 54, 38 43" stroke="#5B8FB9" stroke-width="1.2"/>
-          <!-- Sayap Kanan Atas & Bawah -->
-          <path d="M42 38 C54 16, 72 14, 68 34 C66 44, 52 45, 44 40" stroke="#5B8FB9" stroke-width="1.2"/>
-          <path d="M44 41 C56 48, 64 62, 54 66 C48 68, 44 54, 42 43" stroke="#5B8FB9" stroke-width="1.2"/>
-          <!-- Serat Halus Dalam Sayap -->
-          <path d="M37 38 L18 28 M37 40 L24 56 M43 38 L62 28 M43 40 L56 56" stroke="#5B8FB9" stroke-width="0.6" stroke-opacity="0.5"/>
-          <!-- Inti / Simpul Merah Gelap -->
-          <line x1="40" y1="26" x2="40" y2="52" stroke="#9F1239" stroke-width="1.5"/>
-          <circle cx="40" cy="39" r="2.2" fill="#9F1239"/>
-        </svg>
+        
+        <!-- Emblem Abstrak: Siluet Kupu-Kupu Profil Samping yang Melengkung Menjadi Tanda Koma -->
+        <div class="emblem-wrapper" title="Simbol Jeda — Story of Toqu">
+          <svg class="emblem-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Sayap Utama Tajam (Perspektif Samping) -->
+            <path d="M16 32 C14 20, 22 9, 36 8 C35 19, 29 26, 20 29" stroke="#E4E4E7" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Sayap Sekunder dengan Sentuhan Biru Baja Redup -->
+            <path d="M19 28 C25 26, 33 27, 35 34 C29 37, 23 35, 19 32" stroke="#60A5FA" stroke-width="1.2" stroke-opacity="0.75" stroke-linecap="round"/>
+            <!-- Urat Sayap Halus -->
+            <path d="M18 30 L31 14" stroke="#60A5FA" stroke-width="0.7" stroke-opacity="0.45"/>
+            <!-- Ekor Melengkung Membentuk Tanda Koma di Bawah -->
+            <path d="M16 32 C14 36, 13 40, 10 42" stroke="#E11D48" stroke-width="1.6" stroke-linecap="round"/>
+            <!-- Simpul Inti Merah Crimson -->
+            <circle cx="16" cy="31.5" r="2.2" fill="#E11D48"/>
+          </svg>
+        </div>
       </header>
 
       <div class="prolog" id="prolog-text"></div>
@@ -462,8 +515,8 @@
       card.className = `story-card ${isPublished ? '' : 'locked-card'}`;
       card.innerHTML = `
         <div class="story-meta">
-          <span>Bab ${story.num}</span>
-          <span>${isPublished ? (story.readTime || '3 menit baca') : 'Belum terbit'}</span>
+          <span class="story-bab">Bab ${story.num}</span>
+          <span class="story-time">${isPublished ? (story.readTime || '3 menit baca') : 'Belum terbit'}</span>
         </div>
         <div class="story-title">${story.title}</div>
         <div class="story-premise">${story.premise}</div>
