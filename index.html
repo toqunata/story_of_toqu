@@ -9,16 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #08080A;
-      --surface: #0E0E12;
+      --bg: #050507;
+      --surface: #0C0C10;
+      --surface-hover: #121218;
       --text-primary: #F4F4F6;
       --text-secondary: #D4D4D8;
       --ash-silver: #9CA3AF;
-      --text-muted: #787885;
+      --text-muted: #71717A;
       --crimson: #E11D48;
-      --crimson-soft: rgba(225, 29, 72, 0.12);
-      --border: #1C1C22;
-      --border-hover: #2E2E38;
+      --crimson-glow: rgba(225, 29, 72, 0.18);
+      --crimson-soft: rgba(225, 29, 72, 0.10);
+      --border: #1A1A22;
+      --border-hover: #2D2D3A;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,14 +37,23 @@
       overflow-x: hidden;
     }
 
-    /* Pencahayaan Dramatis Sangat Halus */
+    /* Tekstur Grain Halus & Pencahayaan Dramatis Sampul Buku */
     body::before {
       content: "";
       position: fixed;
-      top: -15%; left: 50%;
-      transform: translateX(-50%);
-      width: 70vw; height: 45vh;
-      background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.045) 0%, rgba(156, 163, 175, 0.02) 45%, transparent 75%);
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+      background-size: 24px 24px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: -10%; right: -5%;
+      width: 65vw; height: 65vh;
+      background: radial-gradient(circle, rgba(225, 29, 72, 0.07) 0%, rgba(156, 163, 175, 0.025) 40%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -60,115 +71,131 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, var(--ash-silver) 0%, var(--crimson) 100%);
+      box-shadow: 0 0 8px var(--crimson);
       transition: width 0.1s ease-out;
     }
 
     .container {
-      max-width: 650px;
+      max-width: 680px;
       margin: 0 auto;
-      padding: 68px 0 100px;
+      padding: 72px 0 100px;
       position: relative;
       z-index: 1;
     }
 
-    /* Header Editorial */
+    /* Hero Header dengan Ilustrasi Kupu-Kupu Menyatu di Latar */
     header {
-      margin-bottom: 44px;
+      margin-bottom: 48px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 32px;
+      padding-bottom: 44px;
+      position: relative;
+      min-height: 185px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
+      flex-direction: column;
+      justify-content: flex-end;
     }
+
+    .hero-artwork {
+      position: absolute;
+      right: -18px;
+      top: -28px;
+      width: 230px;
+      height: 230px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.88;
+      mix-blend-mode: lighten;
+      -webkit-mask-image: radial-gradient(circle at center, black 48%, transparent 76%);
+      mask-image: radial-gradient(circle at center, black 48%, transparent 76%);
+    }
+    .hero-artwork img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+      max-width: 82%;
+    }
+
     .kicker {
       font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--crimson);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .kicker::before {
       content: "";
       display: inline-block;
-      width: 14px;
+      width: 18px;
       height: 1px;
       background-color: var(--crimson);
     }
+
     .brand-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.75rem;
+      font-size: 3.2rem;
       font-weight: 600;
-      letter-spacing: -0.015em;
-      line-height: 1.05;
+      letter-spacing: -0.02em;
+      line-height: 1.02;
       color: var(--text-primary);
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
     }
     .brand-title .comma-mark {
       color: var(--crimson);
       font-style: italic;
       letter-spacing: -0.06em;
-      margin-left: 2px;
+      margin-left: 3px;
     }
+
     .brand-author {
-      font-size: 0.84rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 10px;
-      letter-spacing: 0.06em;
+      margin-top: 12px;
+      letter-spacing: 0.08em;
     }
     .brand-author strong {
       color: var(--ash-silver);
       font-weight: 400;
     }
 
-    /* Bingkai Emblem Ilustrasi Kupu-Kupu */
-    .emblem-wrapper {
-      width: 72px;
-      height: 72px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      background-color: #000000;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 0 24px rgba(0, 0, 0, 0.8);
-    }
-    .emblem-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.32);
-      display: block;
-    }
-
     /* Prolog Manifesto */
     .prolog {
-      border-left: 2px solid var(--crimson);
-      padding: 6px 0 6px 22px;
+      position: relative;
+      padding: 20px 24px;
       margin-bottom: 52px;
+      background: linear-gradient(90deg, rgba(225, 29, 72, 0.06) 0%, rgba(12, 12, 16, 0.4) 100%);
+      border-left: 2px solid var(--crimson);
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       color: var(--text-secondary);
-      font-size: 1.26rem;
+      font-size: 1.28rem;
       line-height: 1.65;
     }
 
     /* Navigasi Tab Arc */
     .arc-tabs {
       display: flex;
-      gap: 28px;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 1px solid var(--border);
       margin-bottom: 32px;
+      gap: 16px;
+    }
+    .tab-group {
+      display: flex;
+      gap: 26px;
       overflow-x: auto;
       scrollbar-width: none;
     }
-    .arc-tabs::-webkit-scrollbar { display: none; }
+    .tab-group::-webkit-scrollbar { display: none; }
     .tab-btn {
       background: none;
       border: none;
@@ -192,6 +219,14 @@
       opacity: 0.35;
       cursor: not-allowed;
     }
+    .arc-counter {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ash-silver);
+      padding-bottom: 14px;
+      white-space: nowrap;
+    }
 
     /* Judul Sub-Bab Arc */
     .arc-header {
@@ -199,7 +234,7 @@
     }
     .arc-header h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
+      font-size: 1.68rem;
       font-weight: 600;
       color: var(--text-primary);
       letter-spacing: 0.01em;
@@ -210,29 +245,36 @@
       margin-top: 4px;
     }
 
-    /* Daftar Cerita (Indeks Editorial) */
+    /* Daftar Cerita (Kartu Editorial dengan Kilau Tepi) */
     .story-list {
       display: flex;
       flex-direction: column;
-      border-top: 1px solid var(--border);
+      gap: 12px;
     }
     .story-card {
-      padding: 24px 8px;
-      border-bottom: 1px solid var(--border);
+      padding: 22px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid transparent;
       cursor: pointer;
-      transition: background 0.25s ease, padding-left 0.25s ease, border-color 0.25s ease;
+      transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+    }
+    .story-card:not(.locked-card) {
+      border-left-color: var(--crimson);
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.04) 0%, var(--surface) 45%);
     }
     .story-card:hover:not(.locked-card) {
-      background: linear-gradient(90deg, rgba(225, 29, 72, 0.04) 0%, transparent 100%);
-      padding-left: 16px;
-      border-bottom-color: var(--border-hover);
-    }
-    .story-card:hover:not(.locked-card) .story-title {
-      color: #FFFFFF;
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+      border-left-color: var(--crimson);
+      transform: translateX(4px);
+      box-shadow: -6px 0 20px rgba(225, 29, 72, 0.12);
     }
     .story-card.locked-card {
-      opacity: 0.42;
+      opacity: 0.45;
       cursor: default;
+      background: transparent;
     }
 
     /* Label Sub-Bab & Durasi Baca */
@@ -241,8 +283,8 @@
       justify-content: space-between;
       align-items: center;
       font-size: 0.74rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
+      font-weight: 600;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       margin-bottom: 8px;
     }
@@ -252,20 +294,25 @@
     .story-time {
       color: var(--ash-silver);
       font-weight: 400;
+      font-size: 0.72rem;
     }
     .story-card.locked-card .story-bab,
     .story-card.locked-card .story-time {
       color: var(--text-muted);
+      font-weight: 400;
     }
 
     .story-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.48rem;
+      font-size: 1.52rem;
       font-weight: 600;
       color: var(--text-primary);
       margin-bottom: 6px;
       line-height: 1.25;
       transition: color 0.2s;
+    }
+    .story-card:hover:not(.locked-card) .story-title {
+      color: #FFFFFF;
     }
     .story-premise {
       font-size: 0.9rem;
@@ -279,7 +326,7 @@
       animation: fadeIn 0.35s ease;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .back-btn {
@@ -304,15 +351,15 @@
       font-size: 0.76rem;
       font-weight: 600;
       color: var(--crimson);
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
     .reader-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       font-weight: 600;
-      line-height: 1.18;
+      line-height: 1.16;
       color: var(--text-primary);
       margin-bottom: 36px;
       padding-bottom: 24px;
@@ -320,12 +367,12 @@
     }
     .reader-body p {
       margin-bottom: 24px;
-      font-size: 1.04rem;
+      font-size: 1.05rem;
       color: var(--text-secondary);
     }
     .reader-body p:first-of-type::first-letter {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3.3rem;
+      font-size: 3.4rem;
       font-weight: 600;
       float: left;
       line-height: 0.82;
@@ -337,7 +384,7 @@
     /* Kotak Kutipan & Jembatan WhatsApp */
     .quote-box {
       margin: 52px 0 32px;
-      padding: 26px;
+      padding: 28px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-left: 2px solid var(--crimson);
@@ -345,7 +392,7 @@
     .quote-text {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1.2rem;
+      font-size: 1.22rem;
       color: var(--text-primary);
       margin-bottom: 20px;
       line-height: 1.6;
@@ -416,10 +463,11 @@
       color: var(--crimson);
     }
 
-    @media (max-width: 480px) {
-      .brand-title { font-size: 2.2rem; }
-      .emblem-wrapper { width: 58px; height: 58px; }
-      .reader-title { font-size: 2rem; }
+    @media (max-width: 520px) {
+      .brand-title { font-size: 2.45rem; }
+      .hero-artwork { width: 175px; height: 175px; right: -12px; top: -18px; opacity: 0.75; }
+      .header-content { max-width: 90%; }
+      .reader-title { font-size: 2.05rem; }
     }
   </style>
 </head>
@@ -430,24 +478,27 @@
   <div class="container">
     <div id="home-view">
       <header>
-        <div>
+        <!-- Ilustrasi Kupu-Kupu Menyatu Langsung dengan Latar Gelap (Tanpa Bingkai Lingkaran) -->
+        <div class="hero-artwork" aria-hidden="true">
+          <img id="emblem-img" src="emblem.jpg" alt="" />
+        </div>
+
+        <div class="header-content">
           <div class="kicker">Antologi Jeda &amp; Kehampaan</div>
           <h1 class="brand-title">Story of Toqu<span class="comma-mark">,,</span></h1>
           <div class="brand-author">ditulis oleh <strong>komadua.toqu</strong></div>
-        </div>
-        
-        <!-- Emblem Ilustrasi dengan Deteksi Ekstensi Otomatis -->
-        <div class="emblem-wrapper" title="Simbol Jeda — komadua.toqu">
-          <img id="emblem-img" src="emblem.jpg" alt="Simbol Story of Toqu" />
         </div>
       </header>
 
       <div class="prolog" id="prolog-text"></div>
 
       <div class="arc-tabs">
-        <button class="tab-btn active">Arc I — Kehampaan</button>
-        <button class="tab-btn locked" title="Belum dibuka">Arc II — Terkunci</button>
-        <button class="tab-btn locked" title="Belum dibuka">Arc III — Terkunci</button>
+        <div class="tab-group">
+          <button class="tab-btn active">Arc I — Kehampaan</button>
+          <button class="tab-btn locked" title="Belum dibuka">Arc II — Terkunci</button>
+          <button class="tab-btn locked" title="Belum dibuka">Arc III — Terkunci</button>
+        </div>
+        <div class="arc-counter" id="arc-counter"></div>
       </div>
 
       <div class="arc-header">
@@ -484,7 +535,7 @@
 
   <script src="cerita.js"></script>
   <script>
-    // Deteksi otomatis ekstensi file emblem (.jpg / .jpeg / .png / .webp / huruf besar)
+    // Deteksi otomatis ekstensi file gambar emblem
     const emblemImg = document.getElementById('emblem-img');
     const emblemCandidates = ['emblem.jpeg', 'emblem.png', 'emblem.webp', 'Emblem.jpg', 'Emblem.jpeg', 'Emblem.png'];
     let candidateIdx = 0;
@@ -507,6 +558,10 @@
     const igLink = document.getElementById('ig-footer-link');
     igLink.href = `https://instagram.com/${PROFIL.usernameIG}`;
     igLink.textContent = `@${PROFIL.usernameIG}`;
+
+    // Hitung jumlah bab yang sudah terbit otomatis
+    const publishedCount = DAFTAR_CERITA.filter(s => s.content && s.content.length > 0).length;
+    document.getElementById('arc-counter').textContent = `${String(publishedCount).padStart(2, '0')} / ${DAFTAR_CERITA.length} Terbit`;
 
     DAFTAR_CERITA.forEach((story, index) => {
       const isPublished = story.content && story.content.length > 0;
