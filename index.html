@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Story of Toqu — komadua.toqu</title>
+  <title>Story of Toqu,, — komadua.toqu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -11,16 +11,13 @@
     :root {
       --bg: #08080A;
       --surface: #0E0E12;
-      --surface-elevated: #141419;
       --text-primary: #F4F4F6;
       --text-secondary: #D4D4D8;
-      --text-muted: #82828E;
-      
-      /* Palet Utama: Merah Getir yang Terbaca Tajam + Aksen Biru Baja Sangat Tipis */
-      --crimson: #E11D48;         /* Kontras tinggi untuk sub-bab & penanda penting */
-      --crimson-soft: rgba(225, 29, 72, 0.14);
-      --steel-blue: #60A5FA;      /* Biru dingin hanya sebagai aksen mikro */
-      --steel-muted: #475569;
+      --ash-silver: #9CA3AF;
+      --text-muted: #787885;
+      --crimson: #E11D48;
+      --crimson-soft: rgba(225, 29, 72, 0.12);
+      --steel-blue: #60A5FA;
       --border: #1C1C22;
       --border-hover: #2E2E38;
     }
@@ -39,19 +36,19 @@
       overflow-x: hidden;
     }
 
-    /* Atmosfer Pencahayaan Gelap Dramatis */
+    /* Pencahayaan Dramatis Sangat Halus */
     body::before {
       content: "";
       position: fixed;
       top: -15%; left: 50%;
       transform: translateX(-50%);
       width: 70vw; height: 45vh;
-      background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.045) 0%, rgba(96, 165, 250, 0.02) 45%, transparent 75%);
+      background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.045) 0%, rgba(156, 163, 175, 0.02) 45%, transparent 75%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Progress Bar Sehelai Rambut (Biru Baja ke Merah Crimson) */
+    /* Progress Bar Sehelai Rambut */
     #progress-container {
       position: fixed;
       top: 0; left: 0;
@@ -63,7 +60,7 @@
     #progress-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--steel-muted) 0%, var(--steel-blue) 45%, var(--crimson) 100%);
+      background: linear-gradient(90deg, var(--ash-silver) 0%, var(--crimson) 100%);
       transition: width 0.1s ease-out;
     }
 
@@ -114,6 +111,7 @@
     .brand-title .comma-mark {
       color: var(--crimson);
       font-style: italic;
+      letter-spacing: -0.06em;
       margin-left: 2px;
     }
     .brand-author {
@@ -123,24 +121,27 @@
       letter-spacing: 0.06em;
     }
     .brand-author strong {
-      color: var(--text-secondary);
+      color: var(--ash-silver);
       font-weight: 400;
     }
 
-   <!-- Emblem Baru: Kupu-Kupu Profil Samping dengan Sayap Bergaya Dua Koma -->
-        <div class="emblem-wrapper" title="Simbol Jeda — Story of Toqu">
-          <svg class="emblem-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 10 C20 18, 30 28, 44 26 C43 33, 38 40, 27 35 C22 32.5, 19 28, 18 25" stroke="#E4E4E7" stroke-width="1.3" stroke-linecap="round"/>
-            <path d="M26 31.5 C24 35, 18 48, 23 54 C28 51, 33 42, 30 35 C28 32.5, 27 31.5, 26 31.5" stroke="#60A5FA" stroke-dasharray="140" stroke-opacity="0.85" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M24.5 44.5 C23 48, 19.5 52, 22.5 53.5 C24 53, 27 48.5, 28 44" stroke="#E11D48" stroke-width="1.1" stroke-opacity="0.65" stroke-linecap="round"/>
-            <path d="M20 16 L35 27 M23 21 L32 30 M24 29 L28 40 M27 33 L26 47" stroke="#60A5FA" stroke-width="0.75" stroke-opacity="0.4"/>
-            <path d="M18 10 C15 15, 14 18, 14 24" stroke="#60A5FA" stroke-width="0.9" stroke-opacity="0.6"/>
-            <path d="M18 25 C14 27, 12 32, 16 31.5" stroke="#E4E4E7" stroke-width="0.8" stroke-opacity="0.4"/>
-            <path d="M44 26.5 C46 22, 47 18, 46.5 17 M44 27 C47 24, 48 21, 48 20" stroke="#60A5FA" stroke-width="1" stroke-linecap="round" stroke-opacity="0.75"/>
-            <circle cx="44.2" cy="26.8" r="1.5" fill="#E4E4E7"/>
-            <circle cx="28.5" cy="30" r="1.5" fill="#E11D48" opacity="0.85"/>
-          </svg>
-        </div>
+    /* Emblem Kupu-Kupu Profil Samping & Siluet Dua Koma */
+    .emblem-wrapper {
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #131318, #08080A);
+    }
+    .emblem-svg {
+      width: 44px;
+      height: 44px;
+      display: block;
+    }
 
     /* Prolog Manifesto */
     .prolog {
@@ -230,7 +231,7 @@
       cursor: default;
     }
 
-    /* Label Sub-Bab & Durasi Baca (Dibuat Kontras & Tajam) */
+    /* Label Sub-Bab & Durasi Baca */
     .story-meta {
       display: flex;
       justify-content: space-between;
@@ -242,17 +243,15 @@
       margin-bottom: 8px;
     }
     .story-bab {
-      color: var(--crimson); /* Merah tegas agar sub-bab terbaca sangat jelas */
+      color: var(--crimson);
     }
     .story-time {
-      color: var(--steel-blue); /* Sentuhan biru dingin sangat halus pada metadata waktu */
-      opacity: 0.85;
+      color: var(--ash-silver);
       font-weight: 400;
     }
     .story-card.locked-card .story-bab,
     .story-card.locked-card .story-time {
       color: var(--text-muted);
-      opacity: 1;
     }
 
     .story-title {
@@ -282,7 +281,7 @@
     .back-btn {
       background: none;
       border: none;
-      color: var(--text-muted);
+      color: var(--ash-silver);
       font-size: 0.78rem;
       font-weight: 500;
       letter-spacing: 0.14em;
@@ -320,7 +319,6 @@
       font-size: 1.04rem;
       color: var(--text-secondary);
     }
-    /* Drop Cap Klasik dengan Sentuhan Merah Getir */
     .reader-body p:first-of-type::first-letter {
       font-family: 'Cormorant Garamond', serif;
       font-size: 3.3rem;
@@ -369,11 +367,11 @@
     }
     .btn-copy {
       background: transparent;
-      color: var(--text-secondary);
+      color: var(--ash-silver);
     }
     .btn-copy:hover {
-      border-color: var(--text-secondary);
-      background: rgba(255, 255, 255, 0.03);
+      border-color: var(--text-primary);
+      color: var(--text-primary);
     }
     .btn-wa {
       background: var(--crimson-soft);
@@ -403,7 +401,7 @@
       gap: 22px;
     }
     .social-links a {
-      color: var(--text-secondary);
+      color: var(--ash-silver);
       text-decoration: none;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -415,9 +413,9 @@
     }
 
     @media (max-width: 480px) {
-      .brand-title { font-size: 2.25rem; }
-      .emblem-wrapper { width: 52px; height: 52px; }
-      .emblem-svg { width: 30px; height: 30px; }
+      .brand-title { font-size: 2.2rem; }
+      .emblem-wrapper { width: 56px; height: 56px; }
+      .emblem-svg { width: 36px; height: 36px; }
       .reader-title { font-size: 2rem; }
     }
   </style>
@@ -431,23 +429,26 @@
       <header>
         <div>
           <div class="kicker">Antologi Jeda &amp; Kehampaan</div>
-          <h1 class="brand-title">Story of Toqu<span class="comma-mark">,</span></h1>
+          <h1 class="brand-title">Story of Toqu<span class="comma-mark">,,</span></h1>
           <div class="brand-author">ditulis oleh <strong>komadua.toqu</strong></div>
         </div>
         
-        <!-- Emblem Abstrak: Siluet Kupu-Kupu Profil Samping yang Melengkung Menjadi Tanda Koma -->
-        <div class="emblem-wrapper" title="Simbol Jeda — Story of Toqu">
-          <svg class="emblem-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Sayap Utama Tajam (Perspektif Samping) -->
-            <path d="M16 32 C14 20, 22 9, 36 8 C35 19, 29 26, 20 29" stroke="#E4E4E7" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Sayap Sekunder dengan Sentuhan Biru Baja Redup -->
-            <path d="M19 28 C25 26, 33 27, 35 34 C29 37, 23 35, 19 32" stroke="#60A5FA" stroke-width="1.2" stroke-opacity="0.75" stroke-linecap="round"/>
-            <!-- Urat Sayap Halus -->
-            <path d="M18 30 L31 14" stroke="#60A5FA" stroke-width="0.7" stroke-opacity="0.45"/>
-            <!-- Ekor Melengkung Membentuk Tanda Koma di Bawah -->
-            <path d="M16 32 C14 36, 13 40, 10 42" stroke="#E11D48" stroke-width="1.6" stroke-linecap="round"/>
+        <!-- Emblem Kupu-Kupu Profil Samping dengan Siluet Dua Koma yang Menyatu di Sayap -->
+        <div class="emblem-wrapper" title="Simbol Jeda — komadua.toqu">
+          <svg class="emblem-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Sayap Atas (Siluet Koma Pertama) -->
+            <path d="M16 12 C28 10, 40 20, 44 30 C36 33, 24 31, 18 24 C14 19, 13 14, 16 12 Z" stroke="#E4E4E7" stroke-width="1.35" stroke-linejoin="round"/>
+            <!-- Sayap Bawah (Siluet Koma Kedua dengan Ekor Melengkung) -->
+            <path d="M24 31 C33 31, 41 35, 42 42 C37 46, 28 47, 23 53 C21 55, 19 54, 21 50 C24 44, 20 36, 24 31 Z" stroke="#9CA3AF" stroke-width="1.3" stroke-linejoin="round"/>
+            <!-- Urat Sayap Halus (Abu-abu Perak & Sentuhan Biru Baja Redup) -->
+            <path d="M18 16 L41 29 M22 21 L37 30" stroke="#60A5FA" stroke-width="0.85" stroke-opacity="0.65" stroke-linecap="round"/>
+            <path d="M25 34 L38 41 M24 39 L31 45" stroke="#9CA3AF" stroke-width="0.8" stroke-opacity="0.55" stroke-linecap="round"/>
+            <!-- Ekor Koma Merah Crimson di Ujung Bawah Sayap -->
+            <path d="M27 46 C25 49, 23 52, 20.5 54" stroke="#E11D48" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Antena Tipis -->
+            <path d="M44 29 C46 24, 48 20, 47 18 M45 30 C48 26, 50 23, 50 21" stroke="#9CA3AF" stroke-width="1.1" stroke-linecap="round"/>
             <!-- Simpul Inti Merah Crimson -->
-            <circle cx="16" cy="31.5" r="2.2" fill="#E11D48"/>
+            <circle cx="43.5" cy="30.5" r="2" fill="#E11D48"/>
           </svg>
         </div>
       </header>
@@ -469,7 +470,7 @@
     </div>
 
     <div id="reader-view">
-      <button class="back-btn" onclick="closeStory()">← Kembali ke Indeks</button>
+      <button class="back-btn" onclick="closeStory()">← Kembali ke Awal</button>
       <div class="reader-chapter" id="reader-chapter"></div>
       <h1 class="reader-title" id="reader-title"></h1>
       <div class="reader-body" id="reader-body"></div>
