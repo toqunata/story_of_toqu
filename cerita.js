@@ -7,6 +7,7 @@ const PROFIL = {
 const DAFTAR_CERITA = [
   {
     num: "01",
+    locked: false,
     title: "Jeda Pertama",
     readTime: "6 menit baca",
     premise: "Tiga baris pesan maaf yang tidak pernah terkirim menahan waktu di depan kaca jendela, tepat saat sehelai daun kering menolak menyentuh aspal.",
@@ -29,6 +30,7 @@ const DAFTAR_CERITA = [
   },
   {
     num: "02",
+    locked: true,
     title: "Gelas yang Tidak Kosong",
     readTime: "6 menit baca",
     premise: "Di balik meja kasir shift dini hari, tiga bongkah es menolak mencair setiap kali layar ponsel bergetar oleh panggilan dari rumah yang sengaja dibisukan.",
@@ -50,108 +52,126 @@ const DAFTAR_CERITA = [
   },
   {
     num: "03",
+    locked: true,
     title: "Bayangan Terselip",
     premise: "Di bawah cahaya lampu dapur yang temaram, bayangan di lantai keramik menolak ikut melangkah saat rahasia lama kembali disembunyikan di balik laci.",
     content: []
   },
   {
     num: "04",
+    locked: true,
     title: "Kata yang Hilang di Tenggorokan",
     premise: "Suara selalu lenyap tepat di pangkal tenggorokan setiap kali kalimat pengakuan yang paling jujur hampir menyentuh ujung lidah.",
     content: []
   },
   {
     num: "05",
+    locked: true,
     title: "Draf yang Tidak Tersimpan",
     premise: "Naskah pengakuan yang ditulis sepanjang malam menguap dari layar kosong, hanya menyisakan dua tanda baca yang menolak dihapus.",
     content: []
   },
   {
     num: "06",
+    locked: true,
     title: "Ketukan di Kepala",
     premise: "Irama ketukan asing bergema dari balik pelipis setiap kali ruang rapat yang penuh kepura-puraan mendadak jatuh dalam keheningan.",
     content: []
   },
   {
     num: "07",
+    locked: true,
     title: "Cahaya yang Melengkung",
     premise: "Pantulan lampu jalan di genangan hujan membengkok patah ke arah mulut gang yang selama bertahun-tahun sengaja dihindari.",
     content: []
   },
   {
     num: "08",
+    locked: true,
     title: "Kursi yang Bergeser Sendiri",
     premise: "Kursi kayu di sudut ruang tamu yang kosong berderit mundur beberapa senti setiap pukul sembilan malam, seolah seseorang baru saja bangkit.",
     content: []
   },
   {
     num: "09",
+    locked: true,
     title: "Nafas Kedua",
     premise: "Di tengah kamar yang terkunci rapat, terdengar helaan napas lain yang selalu datang setengah detik setelah napas sendiri selesai diembuskan.",
     content: []
   },
   {
     num: "10",
+    locked: true,
     title: "Perasaan yang Tertinggal",
     premise: "Di dalam gerbong kereta komuter terakhir pukul 23.40, tubuh terus melaju melewati stasiun sementara kesadaran tertinggal di peron.",
     content: []
   },
   {
     num: "11",
+    locked: true,
     title: "Suara yang Tidak Selesai",
     premise: "Panggilan dari nomor lama selalu terputus tepat di tengah suku kata terakhir, berulang setiap malam pada detik yang sama.",
     content: []
   },
   {
     num: "12",
+    locked: true,
     title: "Hari yang Terbagi Dua",
     premise: "Waktu antara pukul tiga hingga enam sore lenyap begitu saja dari ingatan, hanya menyisakan rasa lelah yang tidak pernah dimengerti.",
     content: []
   },
   {
     num: "13",
+    locked: true,
     title: "Buku yang Menolak Ditutup",
     premise: "Sebuah buku catatan tanpa sampul di sudut meja selalu kembali terbuka pada halaman kosong yang sama setiap kali fajar menyingsing.",
     content: []
   },
   {
     num: "14",
+    locked: true,
     title: "Tidur yang Terpotong",
     premise: "Mata selalu terbuka tepat pukul tiga dini hari dengan sisa rasa getir di lidah, seolah baru saja mengucapkan selamat tinggal dalam mimpi.",
     content: []
   },
   {
     num: "15",
+    locked: true,
     title: "Bayangan di Cermin",
     premise: "Pantulan di balik kaca kamar mandi terlambat berkedip sepersekian detik setiap kali rasa asing terhadap diri sendiri mulai merayap.",
     content: []
   },
   {
     num: "16",
+    locked: true,
     title: "Pola yang Berulang",
     premise: "Lampu merah di Simpang Jembatan Besi menahan laju kendaraan lebih lama dari biasanya setiap kali niat untuk pulang mulai goyah.",
     content: []
   },
   {
     num: "17",
+    locked: true,
     title: "Tangis Tanpa Suara",
     premise: "Isak yang pecah di ruang sempit tidak mengeluarkan air mata maupun suara, sementara tetes air dari keran berhenti menggantung di udara.",
     content: []
   },
   {
     num: "18",
+    locked: true,
     title: "Mimpi Tanpa Wajah",
     premise: "Percakapan panjang di dalam tidur selalu berlangsung dengan sosok tanpa wajah, meninggalkan kalimat yang tidak pernah selesai saat terjaga.",
     content: []
   },
   {
     num: "19",
+    locked: true,
     title: "Kepergian yang Tidak Pernah Datang",
     premise: "Menunggu perpisahan yang sudah dijanjikan di teras rumah, sementara jarum jam dinding menolak bergerak melewati angka dua belas.",
     content: []
   },
   {
     num: "20",
+    locked: true,
     title: "Koma Pertama",
     premise: "Goresan pensil di halaman terakhir sebuah buku gambar bekas membentuk siluet sayap patah dan dua tanda jeda yang saling berhadapan.",
     content: []
