@@ -13,7 +13,7 @@
   <meta property="og:image" content="emblem.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Story of Toqu,, — komadua.toqu" />
-  <meta name="twitter:description" content="Antologi jeda dan kehampaan. Fragmen kehidupan yang terhenti di tengah kalimat." />
+  <meta name="twitter:description" content="Antologi jeda dan kehampaan. Fragmen-fragmen kehidupan yang terhenti di tengah kalimat." />
   <meta name="twitter:image" content="emblem.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -620,7 +620,7 @@
     </footer>
   </div>
 
-  <script src="cerita.js?v=2"></script>
+  <script src="cerita.js?v=3"></script>
   <script>
     // Deteksi otomatis ekstensi file gambar emblem
     const emblemImg = document.getElementById('emblem-img');
@@ -646,8 +646,8 @@
     igLink.href = `https://instagram.com/${PROFIL.usernameIG}`;
     igLink.textContent = `@${PROFIL.usernameIG}`;
 
-    // Hitung jumlah bab yang sudah terbit otomatis
-    const publishedCount = DAFTAR_CERITA.filter(s => s.content && s.content.length > 0).length;
+    // Hitung jumlah bab yang sudah terbit (tidak terkunci & ada isinya)
+    const publishedCount = DAFTAR_CERITA.filter(s => !s.locked && s.content && s.content.length > 0).length;
     document.getElementById('arc-counter').textContent = `${String(publishedCount).padStart(2, '0')} / ${DAFTAR_CERITA.length} Terbit`;
 
     function renderStoryList() {
@@ -655,7 +655,7 @@
       const lastReadNum = localStorage.getItem('toqu_last_read');
 
       DAFTAR_CERITA.forEach((story, index) => {
-        const isPublished = story.content && story.content.length > 0;
+        const isPublished = !story.locked && story.content && story.content.length > 0;
         const isLastRead = isPublished && lastReadNum === story.num;
 
         const card = document.createElement('div');
@@ -666,7 +666,7 @@
               <span class="story-bab">Bab ${story.num}</span>
               ${isLastRead ? '<span class="last-read-badge">• Terakhir Dibaca</span>' : ''}
             </div>
-            <span class="story-time">${isPublished ? (story.readTime || '3 menit baca') : 'Belum terbit'}</span>
+            <span class="story-time">${isPublished ? (story.readTime || '6 menit baca') : 'Belum terbit'}</span>
           </div>
           <div class="story-title">${story.title}</div>
           <div class="story-premise">${story.premise}</div>
@@ -693,7 +693,7 @@
       // Atur Tombol Bab Sebelumnya
       const prevBtn = document.getElementById('prev-chapter-btn');
       const prevStory = index > 0 ? DAFTAR_CERITA[index - 1] : null;
-      if (prevStory && prevStory.content && prevStory.content.length > 0) {
+      if (prevStory && !prevStory.locked && prevStory.content && prevStory.content.length > 0) {
         prevBtn.disabled = false;
         prevBtn.innerHTML = `<span class="nav-label">← Bab Sebelumnya</span><span class="nav-title">Bab ${prevStory.num}: ${prevStory.title}</span>`;
         prevBtn.onclick = () => openStory(index - 1);
@@ -706,7 +706,7 @@
       // Atur Tombol Bab Selanjutnya
       const nextBtn = document.getElementById('next-chapter-btn');
       const nextStory = index < DAFTAR_CERITA.length - 1 ? DAFTAR_CERITA[index + 1] : null;
-      if (nextStory && nextStory.content && nextStory.content.length > 0) {
+      if (nextStory && !nextStory.locked && nextStory.content && nextStory.content.length > 0) {
         nextBtn.disabled = false;
         nextBtn.innerHTML = `<span class="nav-label">Bab Selanjutnya →</span><span class="nav-title">Bab ${nextStory.num}: ${nextStory.title}</span>`;
         nextBtn.onclick = () => openStory(index + 1);
