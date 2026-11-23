@@ -127,4 +127,411 @@
     }
     .brand-title {
       font-family: 'Lora', serif;
-      font
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .brand-comma {
+      color: var(--blue-glow);
+      font-size: 2.4rem;
+      line-height: 1;
+      text-shadow: 0 0 12px rgba(56, 189, 248, 0.65);
+    }
+    .brand-author {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+    .brand-author span {
+      color: var(--red-accent);
+    }
+
+    .header-emblem {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.55));
+      animation: emblemPulse 5s infinite ease-in-out;
+    }
+    @keyframes emblemPulse {
+      0%, 100% { transform: translateY(0) rotate(0deg); filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5)); }
+      50% { transform: translateY(-4px) rotate(3deg); filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.85)); }
+    }
+
+    /* Prolog dengan Garis Ikatan Merah */
+    .prolog {
+      border-left: 2px solid var(--red-accent);
+      padding: 6px 0 6px 18px;
+      margin-bottom: 36px;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: #D1D1DA;
+      font-size: 0.98rem;
+      background: linear-gradient(90deg, rgba(225, 29, 72, 0.06) 0%, transparent 70%);
+    }
+
+    /* Filter Arc */
+    .arc-tabs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      scrollbar-width: none;
+    }
+    .arc-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      border-color: var(--blue-glow);
+      color: var(--text-main);
+      background: rgba(56, 189, 248, 0.08);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+    }
+    .tab-btn.locked {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .arc-header { margin-bottom: 20px; }
+    .arc-header h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .arc-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Daftar Cerita */
+    .story-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .story-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: transform 0.15s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-card:not(.locked-card)::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--blue-glow), var(--red-accent));
+    }
+    .story-card:hover:not(.locked-card) {
+      background: var(--surface-hover);
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.08);
+      transform: translateY(-1px);
+    }
+    .story-card.locked-card {
+      opacity: 0.5;
+      cursor: default;
+    }
+    .story-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--blue-glow);
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+    }
+    .story-card.locked-card .story-meta { color: var(--text-muted); }
+    .story-title {
+      font-family: 'Lora', serif;
+      font-size: 1.12rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .story-premise {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Mode Baca */
+    #reader-view {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .back-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+      padding: 6px 0;
+    }
+    .back-btn:hover { color: var(--blue-glow); }
+
+    .reader-chapter {
+      font-size: 0.82rem;
+      color: var(--blue-glow);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .reader-title {
+      font-family: 'Lora', serif;
+      font-size: 1.85rem;
+      line-height: 1.3;
+      margin-bottom: 28px;
+    }
+    .reader-body p {
+      margin-bottom: 20px;
+      font-size: 1.03rem;
+      color: #DCDCE0;
+    }
+
+    .quote-box {
+      margin: 40px 0 28px;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--red-accent);
+      border-radius: 10px;
+    }
+    .quote-text {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn {
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .btn-copy {
+      background: transparent;
+      color: var(--text-main);
+    }
+    .btn-copy:hover { border-color: var(--blue-glow); color: var(--blue-glow); }
+    .btn-wa {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--blue-glow);
+      color: var(--blue-glow);
+    }
+    .btn-wa:hover {
+      background: var(--blue-glow);
+      color: #0A0A0D;
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 14px;
+    }
+    .social-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .social-links a:hover {
+      color: var(--blue-glow);
+      border-color: var(--red-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Siluet Kupu-Kupu Melayang di Latar -->
+  <div class="butterfly-bg" aria-hidden="true">
+    <svg class="spirit-butterfly" viewBox="0 0 64 64" fill="none">
+      <path d="M32 30 C24 14, 6 12, 8 28 C10 38, 22 40, 30 34 C22 42, 14 52, 22 56 C28 58, 31 46, 32 36 C33 46, 36 58, 42 56 C50 52, 42 42, 34 34 C42 40, 54 38, 56 28 C58 12, 40 14, 32 30 Z" fill="#0A0A0D" stroke="#38BDF8" stroke-width="2"/>
+    </svg>
+    <svg class="spirit-butterfly" viewBox="0 0 64 64" fill="none">
+      <path d="M32 30 C24 14, 6 12, 8 28 C10 38, 22 40, 30 34 C22 42, 14 52, 22 56 C28 58, 31 46, 32 36 C33 46, 36 58, 42 56 C50 52, 42 42, 34 34 C42 40, 54 38, 56 28 C58 12, 40 14, 32 30 Z" fill="#0A0A0D" stroke="#38BDF8" stroke-width="2"/>
+    </svg>
+    <svg class="spirit-butterfly" viewBox="0 0 64 64" fill="none">
+      <path d="M32 30 C24 14, 6 12, 8 28 C10 38, 22 40, 30 34 C22 42, 14 52, 22 56 C28 58, 31 46, 32 36 C33 46, 36 58, 42 56 C50 52, 42 42, 34 34 C42 40, 54 38, 56 28 C58 12, 40 14, 32 30 Z" fill="#0A0A0D" stroke="#E11D48" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div id="progress-container"><div id="progress-bar"></div></div>
+
+  <div class="container">
+    <div id="home-view">
+      <header>
+        <div>
+          <div class="brand-title">Story of Toqu <span class="brand-comma">,</span></div>
+          <div class="brand-author">arsip pikiran &amp; jeda <span>•</span> komadua.toqu</div>
+        </div>
+        <!-- Emblem Kupu-Kupu Hitam-Biru dengan Inti Merah -->
+        <svg class="header-emblem" viewBox="0 0 64 64" fill="none" aria-label="Simbol Kupu-Kupu Story of Toqu">
+          <path d="M32 30 C23 12, 4 10, 7 27 C9 38, 22 40, 30 34 C21 43, 13 54, 22 57 C28 59, 31 46, 32 36 C33 46, 36 59, 42 57 C51 54, 43 43, 34 34 C42 40, 55 38, 57 27 C60 10, 41 12, 32 30 Z" fill="#0E0E13" stroke="#38BDF8" stroke-width="2.2"/>
+          <path d="M29 22 C27 17, 24 15, 22 15 M35 22 C37 17, 40 15, 42 15" stroke="#38BDF8" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="32" cy="32" r="2.2" fill="#E11D48"/>
+        </svg>
+      </header>
+
+      <div class="prolog" id="prolog-text"></div>
+
+      <div class="arc-tabs">
+        <button class="tab-btn active">Arc 1: Kehampaan</button>
+        <button class="tab-btn locked" title="Segera hadir">Arc 2 🔒</button>
+        <button class="tab-btn locked" title="Segera hadir">Arc 3 🔒</button>
+      </div>
+
+      <div class="arc-header">
+        <h2>Arc 1 — Kehampaan yang Menyala Pelan</h2>
+        <p>Dua puluh potongan hidup yang berbeda, dihubungkan oleh satu jeda yang sama.</p>
+      </div>
+
+      <div class="story-list" id="story-list"></div>
+    </div>
+
+    <div id="reader-view">
+      <button class="back-btn" onclick="closeStory()">← Kembali ke Arsip</button>
+      <div class="reader-chapter" id="reader-chapter"></div>
+      <h1 class="reader-title" id="reader-title"></h1>
+      <div class="reader-body" id="reader-body"></div>
+
+      <div class="quote-box">
+        <div class="quote-text" id="reader-quote"></div>
+        <div class="action-row">
+          <button class="btn btn-copy" id="copy-btn" onclick="copyQuote()">Salin Kutipan</button>
+          <a class="btn btn-wa" id="wa-story-btn" href="#" target="_blank" rel="noopener">Ceritakan Jedamu di WhatsApp ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div>Tidak semua cerita ditutup dengan titik.</div>
+      <div class="social-links">
+        <a id="wa-footer-link" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="ig-footer-link" href="#" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="cerita.js"></script>
+  <script>
+    const storyListEl = document.getElementById('story-list');
+    const homeView = document.getElementById('home-view');
+    const readerView = document.getElementById('reader-view');
+    const progressContainer = document.getElementById('progress-container');
+    const progressBar = document.getElementById('progress-bar');
+
+    document.getElementById('prolog-text').textContent = PROFIL.prolog;
+    document.getElementById('wa-footer-link').href = `https://wa.me/${PROFIL.nomorWA}?text=${encodeURIComponent("Halo komadua.toqu, aku baru mampir ke blog Story of Toqu...")}`;
+    const igLink = document.getElementById('ig-footer-link');
+    igLink.href = `https://instagram.com/${PROFIL.usernameIG}`;
+    igLink.textContent = `Instagram @${PROFIL.usernameIG}`;
+
+    DAFTAR_CERITA.forEach((story, index) => {
+      const isPublished = story.content && story.content.length > 0;
+      const card = document.createElement('div');
+      card.className = `story-card ${isPublished ? '' : 'locked-card'}`;
+      card.innerHTML = `
+        <div class="story-meta">
+          <span>BAB ${story.num}</span>
+          <span>${isPublished ? (story.readTime || '3 menit baca') : 'Segera hadir'}</span>
+        </div>
+        <div class="story-title">${story.title}</div>
+        <div class="story-premise">${story.premise}</div>
+      `;
+      if (isPublished) {
+        card.onclick = () => openStory(index);
+      }
+      storyListEl.appendChild(card);
+    });
+
+    function openStory(index) {
+      const story = DAFTAR_CERITA[index];
+      document.getElementById('reader-chapter').textContent = `ARC 1 • BAB ${story.num}`;
+      document.getElementById('reader-title').textContent = story.title;
+      document.getElementById('reader-body').innerHTML = story.content.map(p => `<p>${p}</p>`).join('');
+      document.getElementById('reader-quote').textContent = story.quote || `“${story.premise}”`;
+
+      const waMsg = `Halo komadua.toqu, aku baru saja membaca Bab ${story.num} (${story.title}) di Story of Toqu...`;
+      document.getElementById('wa-story-btn').href = `https://wa.me/${PROFIL.nomorWA}?text=${encodeURIComponent(waMsg)}`;
+
+      homeView.style.display = 'none';
+      readerView.style.display = 'block';
+      progressContainer.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeStory() {
+      readerView.style.display = 'none';
+      progressContainer.style.display = 'none';
+      homeView.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function copyQuote() {
+      const quote = document.getElementById('reader-quote').textContent;
+      navigator.clipboard.writeText(`${quote} — Story of Toqu (@${PROFIL.usernameIG})`).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = "Tersalin ✓";
+        setTimeout(() => { btn.textContent = "Salin Kutipan"; }, 2000);
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      if (readerView.style.display === 'block') {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = `${Math.min(percent, 100)}%`;
+      }
+    });
+  </script>
+</body>
+</html>
