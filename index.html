@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Story of Toqu,, — komadua.toqu</title>
+  <title>Story of Toqu,, — Antologi Cerpen Jeda &amp; Kehampaan | komadua.toqu</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Story of Toqu oleh komadua.toqu — antologi cerita pendek, dark slice of life, dan romansa getir tentang jeda, duka tak selesai, serta ruang sunyi manusia." />
+  <meta name="keywords" content="Story of Toqu, komadua.toqu, antologi cerpen, cerita pendek gelap, dark slice of life, fiksi jeda, cerita malam, romansa getir" />
+  <meta name="author" content="komadua.toqu" />
+  <meta name="robots" content="index, follow" />
 
   <!-- Pratinjau Link WhatsApp, Instagram & Media Sosial (Open Graph) -->
-  <meta name="description" content="Antologi jeda dan kehampaan. Fragmen-fragmen kehidupan yang terhenti di tengah kalimat — ditulis oleh komadua.toqu." />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Story of Toqu,, — komadua.toqu" />
   <meta property="og:description" content="Tidak semua yang pergi meninggalkan titik. Arsip cerita tentang jeda, rasa yang tertahan, dan ruang sunyi di antara dua koma." />
@@ -410,9 +415,9 @@
       color: var(--crimson);
     }
 
-    /* Kotak Kutipan & Jembatan WhatsApp */
+    /* Kotak Kutipan, Like & Aksi */
     .quote-box {
-      margin: 52px 0 28px;
+      margin: 52px 0 24px;
       padding: 28px;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -429,11 +434,11 @@
     .action-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
     }
     .btn {
-      padding: 11px 18px;
-      font-size: 0.76rem;
+      padding: 10px 16px;
+      font-size: 0.74rem;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -441,9 +446,23 @@
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       border: 1px solid var(--border);
       transition: all 0.25s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-like {
+      background: transparent;
+      color: var(--ash-silver);
+    }
+    .btn-like:hover {
+      border-color: var(--crimson);
+      color: var(--text-primary);
+    }
+    .btn-like.liked {
+      background: var(--crimson-soft);
+      border-color: var(--crimson);
+      color: #FDA4AF;
     }
     .btn-copy {
       background: transparent;
@@ -454,13 +473,70 @@
       color: var(--text-primary);
     }
     .btn-wa {
-      background: var(--crimson-soft);
+      background: transparent;
+      border-color: var(--border);
+      color: var(--ash-silver);
+    }
+    .btn-wa:hover {
       border-color: var(--crimson);
       color: #FDA4AF;
     }
-    .btn-wa:hover {
+
+    /* Kotak Tinggalkan Pesan (Bisikan Pembaca) */
+    .note-box {
+      margin: 0 0 28px;
+      padding: 24px 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .note-title {
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ash-silver);
+      margin-bottom: 6px;
+    }
+    .note-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.55;
+    }
+    .note-input-group {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+    }
+    .note-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 11px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .note-input:focus {
+      border-color: var(--crimson);
+    }
+    .btn-send-note {
+      background: var(--crimson-soft);
+      border-color: var(--crimson);
+      color: #FDA4AF;
+      white-space: nowrap;
+    }
+    .btn-send-note:hover {
       background: var(--crimson);
       color: #FFFFFF;
+    }
+    .note-feedback {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--ash-silver);
+      min-height: 18px;
     }
 
     /* Navigasi Antar-Bab di Bawah Cerita */
@@ -547,6 +623,7 @@
       .hero-artwork { width: 175px; height: 175px; right: -12px; top: -18px; opacity: 0.75; }
       .header-content { max-width: 90%; }
       .reader-title { font-size: 2.05rem; }
+      .note-input-group { flex-direction: column; }
       .chapter-nav { flex-direction: column; }
       .nav-chapter-btn.next { text-align: left; align-items: flex-start; }
     }
@@ -599,9 +676,21 @@
       <div class="quote-box">
         <div class="quote-text" id="reader-quote"></div>
         <div class="action-row">
+          <button class="btn btn-like" id="like-btn" onclick="toggleLike()">♡ Terasa <span id="like-count">0</span></button>
           <button class="btn btn-copy" id="copy-btn" onclick="copyQuote()">Salin Kutipan</button>
-          <a class="btn btn-wa" id="wa-story-btn" href="#" target="_blank" rel="noopener">Kirim Catatan ke WhatsApp ↗</a>
+          <a class="btn btn-wa" id="wa-story-btn" href="#" target="_blank" rel="noopener">Kirim WA ↗</a>
         </div>
+      </div>
+
+      <!-- Kotak Tinggalkan Pesan Singkat -->
+      <div class="note-box">
+        <div class="note-title">Tinggalkan Bisikan Setelah Membaca</div>
+        <div class="note-sub">Satu kalimat singkat tentang rasa yang tertinggal dari bab ini untuk @komadua.toqu.</div>
+        <form class="note-input-group" onsubmit="submitNote(event)">
+          <input type="text" class="note-input" id="reader-note-input" placeholder="Tulis pesan atau kesan singkatmu di sini..." maxlength="240" />
+          <button type="submit" class="btn btn-send-note" id="send-note-btn">Kirim Pesan</button>
+        </form>
+        <div class="note-feedback" id="note-feedback"></div>
       </div>
 
       <!-- Navigasi Bab Sebelumnya & Bab Selanjutnya -->
@@ -620,8 +709,11 @@
     </footer>
   </div>
 
-  <script src="cerita.js?v=3"></script>
+  <script src="cerita.js?v=4"></script>
   <script>
+    // Opsional: isi URL endpoint (Formspree / Google Apps Script) jika ingin pesan masuk ke server pribadimu
+    const MESSAGE_ENDPOINT = "";
+
     // Deteksi otomatis ekstensi file gambar emblem
     const emblemImg = document.getElementById('emblem-img');
     const emblemCandidates = ['emblem.jpeg', 'emblem.png', 'emblem.webp', 'Emblem.jpg', 'Emblem.jpeg', 'Emblem.png'];
@@ -639,6 +731,8 @@
     const readerView = document.getElementById('reader-view');
     const progressContainer = document.getElementById('progress-container');
     const progressBar = document.getElementById('progress-bar');
+
+    let currentStoryIndex = 0;
 
     document.getElementById('prolog-text').textContent = PROFIL.prolog;
     document.getElementById('wa-footer-link').href = `https://wa.me/${PROFIL.nomorWA}?text=${encodeURIComponent("Halo komadua.toqu, aku baru saja membaca arsip Story of Toqu...")}`;
@@ -678,7 +772,44 @@
       });
     }
 
+    function updateLikeUI(storyNum) {
+      const likedKey = `toqu_liked_${storyNum}`;
+      const countKey = `toqu_like_count_${storyNum}`;
+      const isLiked = localStorage.getItem(likedKey) === 'true';
+      const count = parseInt(localStorage.getItem(countKey) || '0', 10);
+
+      const likeBtn = document.getElementById('like-btn');
+      const likeCountEl = document.getElementById('like-count');
+      likeCountEl.textContent = count > 0 ? `(${count})` : '';
+      if (isLiked) {
+        likeBtn.classList.add('liked');
+        likeBtn.innerHTML = `♥ Terasa <span id="like-count">${count > 0 ? `(${count})` : ''}</span>`;
+      } else {
+        likeBtn.classList.remove('liked');
+        likeBtn.innerHTML = `♡ Terasa <span id="like-count">${count > 0 ? `(${count})` : ''}</span>`;
+      }
+    }
+
+    function toggleLike() {
+      const story = DAFTAR_CERITA[currentStoryIndex];
+      const likedKey = `toqu_liked_${story.num}`;
+      const countKey = `toqu_like_count_${story.num}`;
+      const currentlyLiked = localStorage.getItem(likedKey) === 'true';
+      let count = parseInt(localStorage.getItem(countKey) || '0', 10);
+
+      if (currentlyLiked) {
+        localStorage.setItem(likedKey, 'false');
+        count = Math.max(0, count - 1);
+      } else {
+        localStorage.setItem(likedKey, 'true');
+        count += 1;
+      }
+      localStorage.setItem(countKey, String(count));
+      updateLikeUI(story.num);
+    }
+
     function openStory(index) {
+      currentStoryIndex = index;
       const story = DAFTAR_CERITA[index];
       localStorage.setItem('toqu_last_read', story.num);
 
@@ -686,6 +817,10 @@
       document.getElementById('reader-title').textContent = story.title;
       document.getElementById('reader-body').innerHTML = story.content.map(p => `<p>${p}</p>`).join('');
       document.getElementById('reader-quote').textContent = story.quote || `“${story.premise}”`;
+
+      document.getElementById('reader-note-input').value = '';
+      document.getElementById('note-feedback').textContent = '';
+      updateLikeUI(story.num);
 
       const waMsg = `Halo komadua.toqu, aku baru selesai membaca Bab ${story.num} (${story.title}) di Story of Toqu...`;
       document.getElementById('wa-story-btn').href = `https://wa.me/${PROFIL.nomorWA}?text=${encodeURIComponent(waMsg)}`;
@@ -736,11 +871,55 @@
 
     function copyQuote() {
       const quote = document.getElementById('reader-quote').textContent;
-      navigator.clipboard.writeText(`${quote} — Story of Toqu (@${PROFIL.usernameIG})`).then(() => {
+      const formatted = `${quote}\n— Story of Toqu,, (@${PROFIL.usernameIG})`;
+      navigator.clipboard.writeText(formatted).then(() => {
         const btn = document.getElementById('copy-btn');
-        btn.textContent = "Tersalin";
-        setTimeout(() => { btn.textContent = "Salin Kutipan"; }, 2000);
+        btn.textContent = "Tersalin (@komadua.toqu)";
+        setTimeout(() => { btn.textContent = "Salin Kutipan"; }, 2200);
       });
+    }
+
+    async function submitNote(event) {
+      event.preventDefault();
+      const inputEl = document.getElementById('reader-note-input');
+      const feedbackEl = document.getElementById('note-feedback');
+      const text = inputEl.value.trim();
+      const story = DAFTAR_CERITA[currentStoryIndex];
+
+      if (!text) {
+        feedbackEl.textContent = "Tuliskan satu kalimat singkat dulu sebelum mengirim.";
+        return;
+      }
+
+      // Simpan arsip catatan lokal di browser pembaca
+      const savedNotes = JSON.parse(localStorage.getItem('toqu_reader_notes') || '[]');
+      savedNotes.push({
+        bab: story.num,
+        judul: story.title,
+        pesan: text,
+        waktu: new Date().toISOString()
+      });
+      localStorage.setItem('toqu_reader_notes', JSON.stringify(savedNotes));
+
+      if (MESSAGE_ENDPOINT) {
+        try {
+          await fetch(MESSAGE_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              bab: story.num,
+              judul: story.title,
+              pesan: text,
+              waktu: new Date().toISOString()
+            })
+          });
+        } catch (err) {
+          // Tetap beri konfirmasi ramah pada pembaca
+        }
+      }
+
+      inputEl.value = '';
+      feedbackEl.textContent = `Bisikan untuk Bab ${story.num} sudah tercatat. Terima kasih telah singgah.`;
     }
 
     window.addEventListener('scroll', () => {
