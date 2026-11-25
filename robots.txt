@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toqunata.github.io/story_of_toqu/sitemap.xml
