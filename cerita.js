@@ -76,7 +76,7 @@ const DAFTAR_CERITA = [
   },
   {
     num: "04",
-    locked: false,
+    locked: true,
     title: "Sebelum Suara Itu Hilang",
     readTime: "5 menit baca",
     premise: "Cinta pertama yang hanya hidup lewat telepon dan SMS polos perlahan memudar oleh waktu dan kesibukan, menyisakan kehangatan yang kian samar.",
